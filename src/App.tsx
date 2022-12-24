@@ -1,14 +1,22 @@
 import { useEffect, useState } from "react";
 
-import { api } from "./service/api";
+import { apiAuth, apiConsume } from "./service/api";
 
 export function App() {
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(false);
   function getAllCards() {
     async function getApi() {
-      const resp = await api.get("/data");
-      console.log(resp);
-      setCards(resp.data);
+      try {
+        setLoading(true);
+        const resp = await apiConsume.get("/");
+        console.log(resp);
+        setCards(resp.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     }
     getApi();
   }
@@ -16,7 +24,11 @@ export function App() {
     getAllCards();
     console.log(cards);
   }, []);
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      {loading ? <h1>Carregando</h1> : <h1>Sucesso</h1>}
+    </div>
+  );
 }
 
 export default App;
