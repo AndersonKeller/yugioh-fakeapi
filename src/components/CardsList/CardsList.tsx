@@ -21,7 +21,7 @@ export function CardsList() {
       <StyledList>
         {cards?.map((card) => (
           <Card key={card.id}>
-            <img src={card.card_images[0].image_url} alt="" />
+            <img key={card.id} src={card.card_images[0].image_url} alt="" />
           </Card>
         ))}
       </StyledList>
