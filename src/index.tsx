@@ -2,14 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App";
+import { MainProvider } from "./context/MainProvider/MainProvier";
 import reportWebVitals from "./reportWebVitals";
+import { GlobalStyles } from "./styles/globalStyles";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyles />
+    <MainProvider>
+      <App />
+    </MainProvider>
   </React.StrictMode>
 );
 
