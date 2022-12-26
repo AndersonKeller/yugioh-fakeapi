@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CardsList } from "../../components/CardsList/CardsList";
+
+import { Header } from "../../components/Header/Header";
 import { CardContext } from "../../context/CardContext/CardContext";
 import { apiConsume } from "../../service/api";
 
@@ -29,5 +31,12 @@ export function Home() {
     getAllCards();
   }, [offset]);
 
-  return loading ? <h1>Carregando</h1> : <CardsList />;
+  return loading ? (
+    <Header />
+  ) : (
+    <>
+      <Header />
+      <CardsList />
+    </>
+  );
 }
