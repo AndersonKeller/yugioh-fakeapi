@@ -1,21 +1,19 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { CardContext } from "../../context/CardContext/CardContext";
 
 import { StyledCard } from "./style";
 
 interface iCardProps {
   children: ReactNode | string | number;
+  id: string | number;
 }
 
-export function Card({ children }: iCardProps) {
+export function Card({ children, id }: iCardProps) {
   console.log(children);
   const navigate = useNavigate();
-  const { showCard, setShowCard } = useContext(CardContext);
+
   function showCardFunc() {
-    setShowCard(!showCard);
-    navigate("/card");
+    navigate(`/card/${id}`);
   }
   return (
     <>

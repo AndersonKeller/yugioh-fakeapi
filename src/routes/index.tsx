@@ -6,8 +6,8 @@ export function RouterMain() {
   return (
     <Routes>
       <Route path="/home" element={<Home />}></Route>
-      <Route path="/card" element={<CardPage />}></Route>
-      <Route path="/user/id"></Route>
+      <Route path="/card/:id" element={<CardPage />}></Route>
+      <Route path="/user/:id"></Route>
       <Route path="*" element={<Home />}></Route>
     </Routes>
   );

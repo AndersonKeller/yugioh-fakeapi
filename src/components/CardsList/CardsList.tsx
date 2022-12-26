@@ -20,8 +20,13 @@ export function CardsList() {
     <>
       <StyledList>
         {cards?.map((card) => (
-          <Card key={card.id}>
-            <img key={card.id} src={card.card_images[0].image_url} alt="" />
+          <Card key={card.id} id={String(card.id)}>
+            <img
+              key={card.id}
+              id={String(card.id)}
+              src={card.card_images[0].image_url}
+              alt=""
+            />
           </Card>
         ))}
       </StyledList>

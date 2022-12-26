@@ -10,12 +10,10 @@ interface iCardContext {
   setCards: React.Dispatch<React.SetStateAction<iCard[]>>;
   remaing: number;
   setRemaing: React.Dispatch<React.SetStateAction<number>>;
-  showCard: boolean;
-  setShowCard: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface iCard {
   name: string;
-  id: number;
+  id: number | string;
   image: string;
   desc: string;
   card_images: iImageArray[];
@@ -28,15 +26,13 @@ export const CardContext = createContext<iCardContext>({} as iCardContext);
 
 export function CardProvider({ children }: iCardContextProps) {
   const [cards, setCards] = useState({} as iCard[]);
-  const [showCard, setShowCard] = useState(false);
+
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
 
   return (
     <CardContext.Provider
       value={{
-        showCard,
-        setShowCard,
         remaing,
         setRemaing,
         cards,
