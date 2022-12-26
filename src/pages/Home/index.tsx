@@ -33,7 +33,10 @@ export function Home() {
   }, [offset]);
 
   return loading ? (
-    <Header />
+    <>
+      <Header />
+      <CardsList />
+    </>
   ) : (
     <>
       <Header />

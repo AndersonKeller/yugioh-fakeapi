@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledCard = styled.li`
   min-width: 250px;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0px -2px 20px 3px rgba(184, 186, 39, 1);

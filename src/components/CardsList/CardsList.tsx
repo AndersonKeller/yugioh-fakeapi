@@ -25,8 +25,12 @@ export function CardsList() {
           </Card>
         ))}
       </StyledList>
-      <button onClick={backList}>Anterior</button>
-      <button onClick={nextList}>Próximo</button>
+      <button disabled={offset === 0 && true} onClick={backList}>
+        Anterior
+      </button>
+      <button disabled={remaing === 0 && true} onClick={nextList}>
+        Próximo
+      </button>
     </>
   );
 }

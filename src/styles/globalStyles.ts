@@ -27,5 +27,8 @@ export const GlobalStyles = createGlobalStyle`
         align-items: center;
         
     }
+    button{
+        cursor: pointer;
+    }
 
 `;
