@@ -6,7 +6,7 @@ export const StyledList = styled.ul`
   overflow-x: scroll;
   gap: 1rem;
   padding: 1.5rem;
-
+  width: 100vw;
   max-width: 1100px;
   margin: 0 auto;
 `;

@@ -8,6 +8,8 @@ interface iCardContext {
   setOffset: React.Dispatch<React.SetStateAction<number>>;
   cards: iCard[];
   setCards: React.Dispatch<React.SetStateAction<iCard[]>>;
+  remaing: number;
+  setRemaing: React.Dispatch<React.SetStateAction<number>>;
 }
 interface iCard {
   name: string;
@@ -25,8 +27,12 @@ export const CardContext = createContext<iCardContext>({} as iCardContext);
 export function CardProvider({ children }: iCardContextProps) {
   const [cards, setCards] = useState({} as iCard[]);
   const [offset, setOffset] = useState(0);
+  const [remaing, setRemaing] = useState(0);
+
   return (
-    <CardContext.Provider value={{ cards, setCards, offset, setOffset }}>
+    <CardContext.Provider
+      value={{ remaing, setRemaing, cards, setCards, offset, setOffset }}
+    >
       {children}
     </CardContext.Provider>
   );

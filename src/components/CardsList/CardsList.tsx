@@ -1,12 +1,19 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { CardContext } from "../../context/CardContext/CardContext";
 import { Card } from "../Card/Card";
 import { StyledList } from "./style";
 
 export function CardsList() {
-  const { cards, offset, setOffset } = useContext(CardContext);
+  const { cards, offset, setOffset, remaing } = useContext(CardContext);
+
   console.log(cards);
   console.log(offset);
+  function backList() {
+    offset > 0 && setOffset(offset - 10);
+  }
+  function nextList() {
+    remaing > 0 && setOffset(offset + 10);
+  }
 
   return (
     <>
@@ -18,7 +25,8 @@ export function CardsList() {
           </Card>
         ))}
       </StyledList>
-      <button onClick={() => setOffset(offset + 10)}>Próximo</button>
+      <button onClick={backList}>Anterior</button>
+      <button onClick={nextList}>Próximo</button>
     </>
   );
 }

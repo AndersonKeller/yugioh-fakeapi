@@ -6,7 +6,7 @@ import { CardContext } from "../../context/CardContext/CardContext";
 import { apiConsume } from "../../service/api";
 
 export function Home() {
-  const { cards, setCards, offset } = useContext(CardContext);
+  const { cards, setCards, offset, setRemaing } = useContext(CardContext);
   const [loading, setLoading] = useState(true);
 
   function getAllCards() {
@@ -18,6 +18,7 @@ export function Home() {
         });
 
         console.log(res);
+        setRemaing(res.data.meta.pages_remaining);
         setCards(res.data.data);
       } catch (error) {
         console.error(error);
