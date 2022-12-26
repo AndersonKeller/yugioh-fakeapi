@@ -4,20 +4,30 @@ interface iCardContextProps {
   children: ReactNode;
 }
 interface iCardContext {
-  card: iCard;
-  setCard: React.Dispatch<React.SetStateAction<iCard>>;
+  offset: number;
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
+  cards: iCard[];
+  setCards: React.Dispatch<React.SetStateAction<iCard[]>>;
 }
 interface iCard {
   name: string;
-  email: string;
+  id: number;
+  image: string;
+  desc: string;
+  card_images: iImageArray[];
 }
-export const UserContext = createContext<iCardContext>({} as iCardContext);
+interface iImageArray {
+  image_url: string;
+  image_url_small: string;
+}
+export const CardContext = createContext<iCardContext>({} as iCardContext);
 
 export function CardProvider({ children }: iCardContextProps) {
-  const [card, setCard] = useState({} as iCard);
+  const [cards, setCards] = useState({} as iCard[]);
+  const [offset, setOffset] = useState(0);
   return (
-    <UserContext.Provider value={{ card, setCard }}>
+    <CardContext.Provider value={{ cards, setCards, offset, setOffset }}>
       {children}
-    </UserContext.Provider>
+    </CardContext.Provider>
   );
 }
