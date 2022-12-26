@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CardContext } from "../../context/CardContext/CardContext";
+import { StyledButton } from "../Button/style";
 import { Card } from "../Card/Card";
 import { StyledList } from "./style";
 
@@ -25,12 +26,12 @@ export function CardsList() {
           </Card>
         ))}
       </StyledList>
-      <button disabled={offset === 0 && true} onClick={backList}>
+      <StyledButton disabled={offset === 0 && true} onClick={backList}>
         Anterior
-      </button>
-      <button disabled={remaing === 0 && true} onClick={nextList}>
+      </StyledButton>
+      <StyledButton disabled={remaing === 0 && true} onClick={nextList}>
         Próximo
-      </button>
+      </StyledButton>
     </>
   );
 }

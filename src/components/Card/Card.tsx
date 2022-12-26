@@ -1,5 +1,5 @@
-import { ReactNode, useContext } from "react";
-import { CardContext } from "../../context/CardContext/CardContext";
+import { ReactNode } from "react";
+
 import { StyledCard } from "./style";
 
 interface iCardProps {
