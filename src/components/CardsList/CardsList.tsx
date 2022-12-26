@@ -18,7 +18,6 @@ export function CardsList() {
 
   return (
     <>
-      {" "}
       <StyledList>
         {cards?.map((card) => (
           <Card key={card.id}>

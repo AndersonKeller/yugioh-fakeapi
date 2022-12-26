@@ -36,7 +36,6 @@ export function Home() {
   return loading ? (
     <>
       <Header />
-      <CardsList />
     </>
   ) : (
     <>
