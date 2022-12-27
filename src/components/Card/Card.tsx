@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardContext } from "../../context/CardContext/CardContext";
 
@@ -11,12 +11,13 @@ interface iCardProps {
 
 export function Card({ children, id }: iCardProps) {
   const navigate = useNavigate();
-  const { setIdCard } = useContext(CardContext);
+  const { setIdCard, idCard } = useContext(CardContext);
 
   function showCardFunc() {
     setIdCard(String(id));
     navigate(`/card/${id}`);
   }
+
   return (
     <>
       <StyledCard onClick={showCardFunc}>{children}</StyledCard>

@@ -13,8 +13,8 @@ export const StyledModalWrapper = styled.div`
   transition: 1s ease;
 `;
 export const StyledModal = styled.div`
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 400px;
   background-color: white;
   position: relative;
   transition: 1s ease;

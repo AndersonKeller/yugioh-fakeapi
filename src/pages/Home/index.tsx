@@ -17,7 +17,6 @@ export function Home() {
           params: { offset: offset, num: 10 },
         });
 
-        console.log(res);
         setRemaing(res.data.meta.pages_remaining);
         setCards(res.data.data);
       } catch (error) {

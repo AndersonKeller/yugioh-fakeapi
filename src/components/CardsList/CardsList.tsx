@@ -7,8 +7,6 @@ import { StyledList } from "./style";
 export function CardsList() {
   const { cards, offset, setOffset, remaing } = useContext(CardContext);
 
-  console.log(cards);
-  console.log(offset);
   function backList() {
     offset > 0 && setOffset(offset - 10);
   }
