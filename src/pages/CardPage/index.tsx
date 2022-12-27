@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,27 +12,21 @@ export function CardPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { cards, idCard } = useContext(CardContext);
+
   function closeModal() {
     navigate("/home");
   }
-  console.log(idCard);
-  function filterCard() {
-    const res = cards.find((card) => {
-      if (card.id === idCard) {
-        return card;
-      } else {
-        return {};
-      }
-    });
-    console.log(res);
-    return res;
-  }
+
+  const res = cards.find((card) => String(card.id) === String(idCard));
+
+  console.log(res);
+
   useEffect(() => {
-    filterCard();
     return setLoading(false);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const cardFind = filterCard();
+  }, [idCard]);
+
   return loading ? (
     <></>
   ) : (
@@ -43,8 +38,8 @@ export function CardPage() {
           <img
             key={idCard}
             id={String(idCard)}
-            src={cardFind?.card_images[0].image_url}
-            alt={cardFind?.name}
+            src={res?.card_images[0].image_url}
+            alt={res?.name}
           />
         </Card>
       </StyledModal>

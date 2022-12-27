@@ -27,8 +27,8 @@ interface iImageArray {
 export const CardContext = createContext<iCardContext>({} as iCardContext);
 
 export function CardProvider({ children }: iCardContextProps) {
-  const [cards, setCards] = useState({} as iCard[]);
-  const [idCard, setIdCard] = useState(String(0));
+  const [cards, setCards] = useState([] as iCard[]);
+  const [idCard, setIdCard] = useState("");
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
 

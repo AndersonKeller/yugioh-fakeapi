@@ -10,7 +10,6 @@ interface iCardProps {
 }
 
 export function Card({ children, id }: iCardProps) {
-  console.log(children);
   const navigate = useNavigate();
   const { setIdCard } = useContext(CardContext);
 
