@@ -10,9 +10,32 @@ export const StyledModalWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 1s ease;
 `;
 export const StyledModal = styled.div`
-  width: 200px;
+  width: 250px;
   height: 250px;
   background-color: white;
+  position: relative;
+  transition: 1s ease;
+  animation: modalAnimation 1s ease;
+  button {
+    position: absolute;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  li {
+    list-style: none;
+    width: 100%;
+    object-fit: contain;
+  }
+  @keyframes modalAnimation {
+    from {
+      opacity: 0.5;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 `;
