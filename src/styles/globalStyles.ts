@@ -31,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
         background-color: var(--primary-color);
         display: flex;
         align-items: center;
+        box-sizing: border-box;
         
     }
     button{

@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { iAsideProps } from ".";
 
 export const StyledModalWrapper = styled.div`
   position: absolute;
@@ -14,14 +15,17 @@ export const StyledModalWrapper = styled.div`
 `;
 export const StyledModal = styled.div`
   width: 280px;
-  height: 400px;
-  background-color: white;
+  height: max-content;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
   position: relative;
   transition: 1s ease;
   animation: modalAnimation 1s ease;
   button {
     position: absolute;
     right: 0;
+    top: -8px;
     background-color: rgba(0, 0, 0, 0.5);
   }
   li {
@@ -38,4 +42,32 @@ export const StyledModal = styled.div`
       opacity: 1;
     }
   }
+`;
+export const StyledAside = styled.aside`
+  min-height: 320px;
+  cursor: pointer;
+  padding: 1rem;
+  position: absolute;
+  right: -12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--color-bronze);
+  color: var(--color-white2);
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+  ${({ infos }: iAsideProps) =>
+    infos
+      ? css`
+          width: 110%;
+          min-height: max-content;
+        `
+      : css`
+          width: 20px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 0 18px 18px 0;
+        `}
 `;

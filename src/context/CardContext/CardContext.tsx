@@ -19,6 +19,13 @@ interface iCard {
   image: string;
   desc: string;
   card_images: iImageArray[];
+  type: string;
+  race: string;
+  archetype: string;
+  atk?: number;
+  attribute?: string;
+  def?: number;
+  level?: number;
 }
 interface iImageArray {
   image_url: string;
