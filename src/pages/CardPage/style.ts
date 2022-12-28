@@ -57,6 +57,7 @@ export const StyledAside = styled.aside`
   gap: 1rem;
   background-color: var(--color-bronze);
   color: var(--color-white2);
+  border-radius: 1rem;
   div {
     display: flex;
     justify-content: space-between;

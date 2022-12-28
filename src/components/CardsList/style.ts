@@ -9,7 +9,7 @@ export const StyledList = styled.ul`
   width: 100vw;
   max-width: 1100px;
   margin: 0 auto;
-  height: 450px;
+  min-height: 450px;
   animation: listAnimation 0.5s ease;
   &::-webkit-scrollbar {
     height: 15px;
