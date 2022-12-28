@@ -60,10 +60,15 @@ export function Login() {
           X
         </button>
         <h2>Faça Login</h2>
-        <Input register={register("email")} placeholder={"digite seu email"} />
+        <Input
+          register={register("email")}
+          placeholder={"digite seu email"}
+          errorMsg={errors.email?.message && errors.email.message}
+        />
         <Input
           register={register("password")}
           placeholder={"digite sua senha"}
+          errorMsg={errors.password?.message && errors.password.message}
         />
         <StyledButton type="submit">Login</StyledButton>
       </LoginForm>
