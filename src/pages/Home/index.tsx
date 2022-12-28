@@ -7,7 +7,7 @@ import { apiConsume } from "../../service/api";
 
 export function Home() {
   const {
-    textFilter,
+    typeFilter,
     filterCards,
     setCards,
     offset,
@@ -42,7 +42,7 @@ export function Home() {
   useEffect(() => {
     filterHandle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [textFilter]);
+  }, [typeFilter]);
   useEffect(() => {
     getAllCards();
     // eslint-disable-next-line react-hooks/exhaustive-deps

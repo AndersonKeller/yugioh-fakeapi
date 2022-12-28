@@ -12,7 +12,6 @@ export const StyledCard = styled.li`
   }
 
   &:hover {
-    box-shadow: 0px -2px 20px 3px rgba(184, 186, 39, 1);
-    border: 5px solid var(--color-bronze);
+    box-shadow: 0px -2px 12px 3px rgba(184, 186, 39, 1);
   }
 `;

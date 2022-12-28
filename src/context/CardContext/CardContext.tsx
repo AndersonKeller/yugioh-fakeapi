@@ -16,8 +16,8 @@ interface iCardContext {
   filterCards: iCard[];
   setFilterCards: React.Dispatch<React.SetStateAction<iCard[]>>;
   filterHandle: () => void;
-  textFilter: string;
-  setTextFilter: React.Dispatch<React.SetStateAction<string>>;
+  typeFilter: string;
+  setTypeFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 interface iCard {
   name: string;
@@ -45,7 +45,7 @@ export function CardProvider({ children }: iCardContextProps) {
   const [idCard, setIdCard] = useState("");
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
-  const [textFilter, setTextFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
   function filterHandle() {
     async function getApiFilter() {
       console.log(filterCards);
@@ -55,7 +55,7 @@ export function CardProvider({ children }: iCardContextProps) {
       try {
         //setLoading(true);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 10, type: `${textFilter}` },
+          params: { offset: offset, num: 10, type: `${typeFilter}` },
         });
         setRemaing(res.data.meta.pages_remaining);
         setFilterCards(res.data.data);
@@ -82,8 +82,8 @@ export function CardProvider({ children }: iCardContextProps) {
         setFilterCards,
         filterCards,
         filterHandle,
-        textFilter,
-        setTextFilter,
+        typeFilter,
+        setTypeFilter,
       }}
     >
       {children}
