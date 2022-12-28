@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../Button/style";
 import { StyledForm, StyledInput } from "./style";
 
@@ -7,8 +8,10 @@ export interface iLoginFormProps {
 }
 
 export function LoginForm({ showLogin, setShowLogin }: iLoginFormProps) {
+  const navigate = useNavigate();
   function closeModal() {
     setShowLogin(!showLogin);
+    navigate("/home");
   }
   return (
     <StyledForm>

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { StyledButton } from "../Button/style";
 
 import { StyledForm, StyledInput } from "../LoginForm/style";
@@ -10,11 +11,13 @@ export function RegisterForm({
   showRegister,
   setShowRegister,
 }: iRegisterProps) {
+  const navigate = useNavigate();
   function closeModal() {
     setShowRegister(!showRegister);
+    navigate("/home");
   }
   return (
-    <StyledForm>
+    <StyledForm noValidate>
       <button className="closeButton" onClick={closeModal}>
         X
       </button>

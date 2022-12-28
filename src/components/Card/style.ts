@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.li`
-  min-width: 250px;
+  min-width: 230px;
   cursor: pointer;
   height: 381px;
   background-color: transparent;
