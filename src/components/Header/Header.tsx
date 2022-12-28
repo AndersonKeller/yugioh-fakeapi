@@ -1,14 +1,24 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CardContext } from "../../context/CardContext/CardContext";
 import { StyledModalWrapper } from "../../pages/CardPage/style";
 
 import { StyledButton } from "../Button/style";
+import { LoginForm } from "../LoginForm/LoginForm";
+import { RegisterForm } from "../RegisterForm/RegisterForm";
+
 import { StyledHeader } from "./style";
 
 export function Header() {
   const { setTypeFilter } = useContext(CardContext);
   const [showFilter, setShowFilter] = useState(false);
-
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  function loginForm() {
+    setShowLogin(!showLogin);
+  }
+  function registerForm() {
+    setShowRegister(!showRegister);
+  }
   function defineFilter(text: string) {
     setTypeFilter(text);
     text === "" && filters();
@@ -45,6 +55,25 @@ export function Header() {
           <StyledButton onClick={filters}>OK</StyledButton>
         </StyledModalWrapper>
       )}
+      <StyledButton onClick={loginForm}>Login</StyledButton>
+      {showLogin && (
+        <>
+          <StyledModalWrapper>
+            <LoginForm showLogin={showLogin} setShowLogin={setShowLogin} />
+          </StyledModalWrapper>
+        </>
+      )}
+      {showRegister && (
+        <>
+          <StyledModalWrapper>
+            <RegisterForm
+              showRegister={showRegister}
+              setShowRegister={setShowRegister}
+            />
+          </StyledModalWrapper>
+        </>
+      )}
+      <StyledButton onClick={registerForm}>Registrar</StyledButton>
     </StyledHeader>
   );
 }

@@ -11,7 +11,7 @@ export const StyledHeader = styled.header`
 
   div button {
     font-size: 0.75rem;
-    width: max-content;
+
     padding: 0.5rem;
     color: var(--color-black);
     background-color: var(--color-white);
