@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import { StyledModal, StyledModalWrapper } from "../../pages/CardPage/style";
-import { StyledButton } from "../Button/style";
-import { StyledForm, StyledInput } from "./style";
+import { StyledModalWrapper } from "../../pages/CardPage/style";
+
+import { StyledForm } from "./style";
 
 export interface iLoginFormProps {
   onSubmit: () => void;

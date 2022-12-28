@@ -37,8 +37,14 @@ export function Login() {
       try {
         const res = await apiAuth.post("/login", data);
         console.log(res);
+        window.localStorage.setItem(
+          "@tokenYuGiOh-fakeApi",
+          res.data.accessToken
+        );
       } catch (error) {
         console.error(error);
+      } finally {
+        navigate("/home");
       }
     }
     loginApi();

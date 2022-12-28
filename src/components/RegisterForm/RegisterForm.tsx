@@ -1,31 +1,19 @@
-import { useNavigate } from "react-router-dom";
-import { StyledButton } from "../Button/style";
+import { ReactNode } from "react";
 
-import { StyledForm, StyledInput } from "../LoginForm/style";
+import { StyledModalWrapper } from "../../pages/CardPage/style";
+
+import { StyledForm } from "../LoginForm/style";
 interface iRegisterProps {
-  showRegister: boolean;
-  setShowRegister: (showRegister: boolean) => void;
+  onSubmit: () => void;
+  children: ReactNode;
 }
 
-export function RegisterForm({
-  showRegister,
-  setShowRegister,
-}: iRegisterProps) {
-  const navigate = useNavigate();
-  function closeModal() {
-    setShowRegister(!showRegister);
-    navigate("/home");
-  }
+export function RegisterForm({ children, onSubmit }: iRegisterProps) {
   return (
-    <StyledForm noValidate>
-      <button className="closeButton" onClick={closeModal}>
-        X
-      </button>
-      <h2>Faça seu cadastro</h2>
-      <StyledInput placeholder="Digite seu nome" />
-      <StyledInput placeholder="Digite seu email" />
-      <StyledInput placeholder="Defina uma senha" />
-      <StyledButton type="submit">Registrar</StyledButton>
-    </StyledForm>
+    <StyledModalWrapper>
+      <StyledForm noValidate onSubmit={onSubmit}>
+        {children}
+      </StyledForm>
+    </StyledModalWrapper>
   );
 }
