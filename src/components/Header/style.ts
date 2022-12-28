@@ -10,6 +10,7 @@ export const StyledHeader = styled.header`
   border-bottom: 1px solid var(--text-color);
   position: relative;
   text-align: center;
+  width: 100vw;
 
   div button {
     font-size: 0.75rem;
