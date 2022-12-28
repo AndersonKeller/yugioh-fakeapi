@@ -14,7 +14,7 @@ export interface iAsideProps {
 export function CardPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { cards, idCard, setIdCard } = useContext(CardContext);
+  const { cards, idCard, setIdCard, filterCards } = useContext(CardContext);
   const [infos, setInfos] = useState(false);
 
   function closeModal() {
@@ -22,7 +22,10 @@ export function CardPage() {
   }
 
   function filterCard() {
-    const res = cards.find((card) => String(card.id) === String(idCard));
+    const res =
+      filterCards.length === 0
+        ? cards.find((card) => String(card.id) === String(idCard))
+        : filterCards.find((card) => String(card.id) === String(idCard));
 
     return res;
   }

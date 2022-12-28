@@ -6,7 +6,14 @@ import { CardContext } from "../../context/CardContext/CardContext";
 import { apiConsume } from "../../service/api";
 
 export function Home() {
-  const { setCards, offset, setRemaing } = useContext(CardContext);
+  const {
+    textFilter,
+    filterCards,
+    setCards,
+    offset,
+    setRemaing,
+    filterHandle,
+  } = useContext(CardContext);
   const [loading, setLoading] = useState(true);
 
   function getAllCards() {
@@ -27,10 +34,19 @@ export function Home() {
     }
     getApi();
   }
+
+  useEffect(() => {
+    filterCards.length === 0 ? getAllCards() : filterHandle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [offset]);
+  useEffect(() => {
+    filterHandle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [textFilter]);
   useEffect(() => {
     getAllCards();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [offset]);
+  }, []);
 
   return loading ? (
     <>
