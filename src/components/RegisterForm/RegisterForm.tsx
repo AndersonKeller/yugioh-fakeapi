@@ -18,6 +18,7 @@ export function RegisterForm({
       <button className="closeButton" onClick={closeModal}>
         X
       </button>
+      <h2>Faça seu cadastro</h2>
       <StyledInput placeholder="Digite seu nome" />
       <StyledInput placeholder="Digite seu email" />
       <StyledInput placeholder="Defina uma senha" />

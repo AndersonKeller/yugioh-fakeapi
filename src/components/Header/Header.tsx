@@ -30,7 +30,7 @@ export function Header() {
 
   return (
     <StyledHeader>
-      <h1>Yu-gi-oh</h1>
+      <h1>YU-GI-OH</h1>
       <StyledButton onClick={filters}>Filtros</StyledButton>
       {showFilter && (
         <StyledModalWrapper>

@@ -5,13 +5,16 @@ export const StyledForm = styled.form`
   flex-direction: column;
   gap: 1rem;
   width: 90%;
+  max-width: 500px;
   position: relative;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+  background-color: var(--color-black);
+  color: var(--color-white2);
   .closeButton {
     width: max-content;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1rem;
+    right: 1rem;
     border-radius: 50%;
     border: none;
   }

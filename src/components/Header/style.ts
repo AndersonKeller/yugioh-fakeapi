@@ -19,9 +19,10 @@ export const StyledHeader = styled.header`
 
   h1 {
     width: max-content;
+    text-shadow: 0 -1px 4px #fff, 0 -2px 6px #ff0, 0 -10px 20px #ff8000,
+      11px -10px 13px rgba(206, 200, 47, 0);
     color: var(--text-color);
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 700;
-    -webkit-text-stroke: 1px var(--text-color-shadow);
   }
 `;

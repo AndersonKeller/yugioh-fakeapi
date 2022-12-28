@@ -15,6 +15,7 @@ export function LoginForm({ showLogin, setShowLogin }: iLoginFormProps) {
       <button className="closeButton" onClick={closeModal}>
         X
       </button>
+      <h2>Faça Login</h2>
       <StyledInput placeholder="Digite seu email" />
       <StyledInput placeholder="Digite sua senha" />
       <StyledButton type="submit">Login</StyledButton>
