@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { CardContext } from "../../context/CardContext/CardContext";
+import { StyledModalWrapper } from "../../pages/CardPage/style";
 
 import { StyledButton } from "../Button/style";
 import { StyledHeader } from "./style";
@@ -10,6 +11,7 @@ export function Header() {
 
   function defineFilter(text: string) {
     setTypeFilter(text);
+    text === "" && filters();
   }
 
   function filters() {
@@ -21,29 +23,27 @@ export function Header() {
       <h1>Yu-gi-oh</h1>
       <StyledButton onClick={filters}>Filtros</StyledButton>
       {showFilter && (
-        <>
-          <div>
-            <StyledButton onClick={() => defineFilter("")}>
-              Resetar Filtros
-            </StyledButton>
-            <StyledButton onClick={() => defineFilter("Spell Card")}>
-              Spell Card
-            </StyledButton>
-            <StyledButton onClick={() => defineFilter("Trap Card")}>
-              Trap Card
-            </StyledButton>
-            <StyledButton onClick={() => defineFilter("Skill Card")}>
-              Skill Card
-            </StyledButton>
-            <StyledButton onClick={() => defineFilter("Normal Monster")}>
-              Normal Monster
-            </StyledButton>
-            <StyledButton onClick={() => defineFilter("Spirit Monster")}>
-              Spirit Monster
-            </StyledButton>
-            <StyledButton onClick={filters}>OK</StyledButton>
-          </div>
-        </>
+        <StyledModalWrapper>
+          <StyledButton onClick={() => defineFilter("")}>
+            Resetar Filtros
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Spell Card")}>
+            Spell Card
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Trap Card")}>
+            Trap Card
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Skill Card")}>
+            Skill Card
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Normal Monster")}>
+            Normal Monster
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Spirit Monster")}>
+            Spirit Monster
+          </StyledButton>
+          <StyledButton onClick={filters}>OK</StyledButton>
+        </StyledModalWrapper>
       )}
     </StyledHeader>
   );
