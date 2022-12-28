@@ -6,19 +6,18 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledModalWrapper } from "../CardPage/style";
 import { apiAuth } from "../../service/api";
+import { Input } from "../../components/Input/Input";
+import { StyledButton } from "../../components/Button/style";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const { showLogin, setShowLogin } = useContext(UserContext);
   type iFormData = {
-    name: string;
     email: string;
     password: string;
   };
+  const navigate = useNavigate();
   const loginSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required("Nome obrigatório")
-      .min(3, "no mínimo 3 caracteres"),
     email: yup.string().required("Email obrigatório").email("formato inválido"),
     password: yup
       .string()
@@ -34,6 +33,7 @@ export function Login() {
     onSubmitApi(data);
   function onSubmitApi(data: iFormData) {
     async function loginApi() {
+      console.log(data);
       try {
         const res = await apiAuth.post("/login", data);
         console.log(res);
@@ -43,14 +43,24 @@ export function Login() {
     }
     loginApi();
   }
+  function closeModal() {
+    setShowLogin(!showLogin);
+    navigate("/home");
+  }
   return (
     <StyledModalWrapper>
-      <LoginForm
-        onSubmit={handleSubmit(onSubmitApi)}
-        register={register}
-        showLogin={showLogin}
-        setShowLogin={setShowLogin}
-      />
+      <LoginForm onSubmit={handleSubmit(onSubmit)}>
+        <button className="closeButton" onClick={closeModal}>
+          X
+        </button>
+        <h2>Faça Login</h2>
+        <Input register={register("email")} placeholder={"digite seu email"} />
+        <Input
+          register={register("password")}
+          placeholder={"digite sua senha"}
+        />
+        <StyledButton type="submit">Login</StyledButton>
+      </LoginForm>
     </StyledModalWrapper>
   );
 }
