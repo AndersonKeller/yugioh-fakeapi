@@ -15,6 +15,7 @@ export const StyledForm = styled.form`
     position: absolute;
     top: 1rem;
     right: 1rem;
+    padding: 0.5rem;
     border-radius: 50%;
     border: none;
   }
