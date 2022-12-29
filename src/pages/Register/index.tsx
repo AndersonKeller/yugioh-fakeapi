@@ -57,16 +57,19 @@ export function Register() {
         </button>
         <h2>Faça seu cadastro</h2>
         <Input
+          type="text"
           register={register("name")}
           placeholder={"digite seu nome"}
           errorMsg={errors.name?.message && errors.name.message}
         />
         <Input
+          type="email"
           register={register("email")}
           placeholder={"digite seu email"}
           errorMsg={errors.email?.message && errors.email.message}
         />
         <Input
+          type="password"
           register={register("password")}
           placeholder={"digite sua senha"}
           errorMsg={errors.password?.message && errors.password.message}

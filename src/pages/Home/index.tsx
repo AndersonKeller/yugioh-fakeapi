@@ -56,7 +56,6 @@ export function Home() {
           password: res.data.password,
         });
       } catch (error) {
-        console.error(error);
       } finally {
         setLoading(false);
       }

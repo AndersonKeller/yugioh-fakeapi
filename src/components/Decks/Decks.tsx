@@ -59,7 +59,11 @@ export function Decks() {
       <StyledButton onClick={createDeck}>{showCreate ? "-" : "+"}</StyledButton>
       {showCreate && (
         <StyledForm noValidate onSubmit={handleSubmit(onSubmit)}>
-          <Input placeholder="nome do deck" register={register("name")} />
+          <Input
+            type="text"
+            placeholder="nome do deck"
+            register={register("name")}
+          />
           <StyledButton type="submit">Criar</StyledButton>
         </StyledForm>
       )}

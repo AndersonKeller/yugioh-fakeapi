@@ -62,11 +62,13 @@ export function Login() {
         </button>
         <h2>Faça Login</h2>
         <Input
+          type="email"
           register={register("email")}
           placeholder={"digite seu email"}
           errorMsg={errors.email?.message && errors.email.message}
         />
         <Input
+          type="password"
           register={register("password")}
           placeholder={"digite sua senha"}
           errorMsg={errors.password?.message && errors.password.message}

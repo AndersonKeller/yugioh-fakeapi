@@ -60,7 +60,6 @@ export function CardProvider({ children }: iCardContextProps) {
         setRemaing(res.data.meta.pages_remaining);
         setFilterCards(res.data.data);
       } catch (error) {
-        console.error(error);
         setFilterCards([]);
       } finally {
         //setLoading(false);

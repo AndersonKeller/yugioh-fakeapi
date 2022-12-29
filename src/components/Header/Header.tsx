@@ -5,6 +5,7 @@ import { CardContext } from "../../context/CardContext/CardContext";
 import { StyledModalWrapper } from "../../pages/CardPage/style";
 
 import { StyledButton } from "../Button/style";
+import { Input } from "../Input/Input";
 
 import { StyledHeader } from "./style";
 
@@ -34,6 +35,7 @@ export function Header() {
           Registrar
         </StyledButton>
       </div>
+      <input type="text" />
       {showFilter && (
         <StyledModalWrapper>
           <StyledButton onClick={() => defineFilter("")}>
