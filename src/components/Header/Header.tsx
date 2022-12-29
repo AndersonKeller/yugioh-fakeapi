@@ -1,13 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CardContext } from "../../context/CardContext/CardContext";
+
 import { StyledModalWrapper } from "../../pages/CardPage/style";
 
 import { StyledButton } from "../Button/style";
+
 import { StyledHeader } from "./style";
 
 export function Header() {
   const { setTypeFilter } = useContext(CardContext);
   const [showFilter, setShowFilter] = useState(false);
+
+  const navigate = useNavigate();
 
   function defineFilter(text: string) {
     setTypeFilter(text);
@@ -20,8 +25,15 @@ export function Header() {
 
   return (
     <StyledHeader>
-      <h1>Yu-gi-oh</h1>
-      <StyledButton onClick={filters}>Filtros</StyledButton>
+      <h1>YU-GI-OH</h1>
+      <div>
+        <StyledButton onClick={filters}>Filtros</StyledButton>
+        <StyledButton onClick={() => navigate("/login")}>Login</StyledButton>
+
+        <StyledButton onClick={() => navigate("/register")}>
+          Registrar
+        </StyledButton>
+      </div>
       {showFilter && (
         <StyledModalWrapper>
           <StyledButton onClick={() => defineFilter("")}>
