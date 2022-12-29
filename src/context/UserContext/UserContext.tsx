@@ -11,17 +11,18 @@ interface iUserContext {
   showLogin: boolean;
   setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
-interface iUser {
+export interface iUser {
   name: string;
   email: string;
   password: string;
+  id: number;
 }
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 export function UserProvider({ children }: iUserContextProps) {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [user, setUser] = useState({} as iUser);
+  const [user, setUser] = useState<iUser>({ email: "", id: 0 } as iUser);
   return (
     <UserContext.Provider
       value={{

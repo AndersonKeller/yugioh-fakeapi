@@ -41,6 +41,7 @@ export function Login() {
           "@tokenYuGiOh-fakeApi",
           res.data.accessToken
         );
+        window.localStorage.setItem("idUser", res.data.user.id);
       } catch (error) {
         console.error(error);
       } finally {
