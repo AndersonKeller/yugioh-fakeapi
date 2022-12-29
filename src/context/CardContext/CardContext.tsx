@@ -19,7 +19,7 @@ interface iCardContext {
   typeFilter: string;
   setTypeFilter: React.Dispatch<React.SetStateAction<string>>;
 }
-interface iCard {
+export interface iCard {
   name: string;
   id: number | string;
   image: string;
