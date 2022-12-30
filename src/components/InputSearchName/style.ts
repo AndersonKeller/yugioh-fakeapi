@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledInputSearchName = styled.fieldset`
+export const StyledInputSearchName = styled.form`
   border: none;
   height: 50px;
   position: relative;

@@ -13,6 +13,9 @@ export function Home() {
     offset,
     setRemaing,
     filterHandle,
+    searchName,
+    fname,
+    searchByName,
   } = useContext(CardContext);
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +39,13 @@ export function Home() {
   }
 
   useEffect(() => {
-    filterCards.length === 0 ? getAllCards() : filterHandle();
+    if (filterCards.length === 0 && searchName.length === 0) {
+      getAllCards();
+    } else if (searchName.length > 0) {
+      searchByName();
+    } else if (filterCards.length > 0) {
+      filterHandle();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
   useEffect(() => {
@@ -44,8 +53,12 @@ export function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeFilter]);
   useEffect(() => {
-    getAllCards();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    searchByName();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fname]);
+  useEffect(() => {
+    getAllCards();
   }, []);
 
   return loading ? (

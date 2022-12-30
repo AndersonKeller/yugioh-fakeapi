@@ -18,6 +18,11 @@ interface iCardContext {
   filterHandle: () => void;
   typeFilter: string;
   setTypeFilter: React.Dispatch<React.SetStateAction<string>>;
+  searchName: iCard[];
+  setSearchName: React.Dispatch<React.SetStateAction<iCard[]>>;
+  fname: string;
+  setFname: React.Dispatch<React.SetStateAction<string>>;
+  searchByName: () => void;
 }
 interface iCard {
   name: string;
@@ -42,20 +47,20 @@ export const CardContext = createContext<iCardContext>({} as iCardContext);
 export function CardProvider({ children }: iCardContextProps) {
   const [cards, setCards] = useState([] as iCard[]);
   const [filterCards, setFilterCards] = useState([] as iCard[]);
+  const [searchName, setSearchName] = useState([] as iCard[]);
   const [idCard, setIdCard] = useState("");
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
+  const [fname, setFname] = useState("");
+  const [num, setNum] = useState(30);
   const [typeFilter, setTypeFilter] = useState("");
+
   function filterHandle() {
     async function getApiFilter() {
-      console.log(filterCards);
-
-      console.log(offset);
-
       try {
         //setLoading(true);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 30, type: `${typeFilter}` },
+          params: { offset: offset, num: num, type: `${typeFilter}` },
         });
         setRemaing(res.data.meta.pages_remaining);
         setFilterCards(res.data.data);
@@ -67,6 +72,25 @@ export function CardProvider({ children }: iCardContextProps) {
       }
     }
     getApiFilter();
+  }
+
+  function searchByName() {
+    async function searchNameApi() {
+      console.log(searchName);
+      try {
+        const res = await apiConsume.get("", {
+          params: { offset: offset, num: 30, fname: fname },
+        });
+        console.log(res.data);
+        setRemaing(res.data.meta.pages_remaining);
+
+        setSearchName(res.data.data);
+      } catch (error) {
+        console.error(error);
+        setSearchName([]);
+      }
+    }
+    searchNameApi();
   }
   return (
     <CardContext.Provider
@@ -84,6 +108,11 @@ export function CardProvider({ children }: iCardContextProps) {
         filterHandle,
         typeFilter,
         setTypeFilter,
+        searchName,
+        setSearchName,
+        fname,
+        setFname,
+        searchByName,
       }}
     >
       {children}

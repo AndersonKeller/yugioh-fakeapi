@@ -1,4 +1,7 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext, useState } from "react";
+import * as yup from "yup";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CardContext } from "../../context/CardContext/CardContext";
 
@@ -11,10 +14,29 @@ import { InputSearchName } from "../InputSearchName/InputSearchName";
 import { StyledHeader } from "./style";
 
 export function Header() {
-  const { setTypeFilter } = useContext(CardContext);
+  const { setTypeFilter, setFname } = useContext(CardContext);
   const [showFilter, setShowFilter] = useState(false);
 
+  const searchNameSchema = yup.object().shape({
+    fname: yup.string().required("Digite ao menos uma letra"),
+  });
+  type iFormData = {
+    fname: string;
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iFormData>({ resolver: yupResolver(searchNameSchema) });
+  const onSubmit: SubmitHandler<iFormData> = async (data: iFormData) =>
+    onSubmitFname(data);
   const navigate = useNavigate();
+
+  function onSubmitFname(data: iFormData) {
+    console.log(data);
+    setFname(data.fname);
+  }
 
   function defineFilter(text: string) {
     setTypeFilter(text);
@@ -36,9 +58,12 @@ export function Header() {
           Registrar
         </StyledButton>
       </div>
-      <InputSearchName>
-        <Input placeholder="Pesquise pelo nome..." register={""} />
-        <StyledButton>Pesquisar</StyledButton>
+      <InputSearchName onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          placeholder="Pesquise pelo nome..."
+          register={register("fname")}
+        />
+        <StyledButton type="submit">Pesquisar</StyledButton>
       </InputSearchName>
       {showFilter && (
         <StyledModalWrapper>
