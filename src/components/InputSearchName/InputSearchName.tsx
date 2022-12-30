@@ -24,7 +24,7 @@ export function InputSearchName({
         {children}
         {errorMsg && <span>{errorMsg}</span>}
       </StyledInputSearchName>
-      {resultSearch && (
+      {resultSearch > 0 && (
         <StyledP>Resultado da busca: {resultSearch} cartas</StyledP>
       )}
       {nothing && <StyledP>Nada encontrado</StyledP>}
