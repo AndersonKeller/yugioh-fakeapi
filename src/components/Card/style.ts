@@ -5,6 +5,7 @@ export const StyledCard = styled.li`
   cursor: pointer;
   height: 381px;
   background-color: transparent;
+
   img {
     width: 100%;
     object-fit: contain;
@@ -13,5 +14,16 @@ export const StyledCard = styled.li`
 
   &:hover {
     box-shadow: 0px -2px 12px 3px rgba(184, 186, 39, 1);
+  }
+  @keyframes animationCard {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;

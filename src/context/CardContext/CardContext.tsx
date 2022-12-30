@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 import { apiConsume } from "../../service/api";
 
 interface iCardContextProps {
@@ -18,6 +18,15 @@ interface iCardContext {
   filterHandle: () => void;
   typeFilter: string;
   setTypeFilter: React.Dispatch<React.SetStateAction<string>>;
+  searchName: iCard[];
+  setSearchName: React.Dispatch<React.SetStateAction<iCard[]>>;
+  fname: string;
+  setFname: React.Dispatch<React.SetStateAction<string>>;
+  searchByName: () => void;
+  resultSearch: number;
+  setResultSearch: React.Dispatch<React.SetStateAction<number>>;
+  nothing: boolean;
+  setNothing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface iCard {
   name: string;
@@ -42,22 +51,25 @@ export const CardContext = createContext<iCardContext>({} as iCardContext);
 export function CardProvider({ children }: iCardContextProps) {
   const [cards, setCards] = useState([] as iCard[]);
   const [filterCards, setFilterCards] = useState([] as iCard[]);
+  const [searchName, setSearchName] = useState([] as iCard[]);
   const [idCard, setIdCard] = useState("");
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
+  const [fname, setFname] = useState("");
+  const [resultSearch, setResultSearch] = useState(0);
+  const [nothing, setNothing] = useState(false);
+
   const [typeFilter, setTypeFilter] = useState("");
+
   function filterHandle() {
     async function getApiFilter() {
-      console.log(filterCards);
-
-      console.log(offset);
-
       try {
         //setLoading(true);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 10, type: `${typeFilter}` },
+          params: { offset: offset, num: 28, type: `${typeFilter}` },
         });
         setRemaing(res.data.meta.pages_remaining);
+        setSearchName([]);
         setFilterCards(res.data.data);
       } catch (error) {
         console.error(error);
@@ -67,6 +79,29 @@ export function CardProvider({ children }: iCardContextProps) {
       }
     }
     getApiFilter();
+  }
+
+  function searchByName() {
+    async function searchNameApi() {
+      try {
+        setNothing(false);
+        const res = await apiConsume.get("", {
+          params: { offset: offset, num: 28, fname: fname },
+        });
+
+        setRemaing(res.data.meta.pages_remaining);
+        setFilterCards([]);
+        setSearchName(res.data.data);
+        setResultSearch(res.data.meta.total_rows);
+      } catch (error) {
+        console.error(error);
+        setSearchName([]);
+        setResultSearch(0);
+        setNothing(true);
+      } finally {
+      }
+    }
+    searchNameApi();
   }
   return (
     <CardContext.Provider
@@ -84,6 +119,15 @@ export function CardProvider({ children }: iCardContextProps) {
         filterHandle,
         typeFilter,
         setTypeFilter,
+        searchName,
+        setSearchName,
+        fname,
+        setFname,
+        searchByName,
+        resultSearch,
+        setResultSearch,
+        nothing,
+        setNothing,
       }}
     >
       {children}

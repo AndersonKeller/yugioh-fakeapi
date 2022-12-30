@@ -14,7 +14,8 @@ export interface iAsideProps {
 export function CardPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const { cards, idCard, setIdCard, filterCards } = useContext(CardContext);
+  const { cards, idCard, setIdCard, filterCards, searchName } =
+    useContext(CardContext);
   const [infos, setInfos] = useState(false);
 
   function closeModal() {
@@ -22,12 +23,18 @@ export function CardPage() {
   }
 
   function filterCard() {
-    const res =
-      filterCards.length === 0
-        ? cards.find((card) => String(card.id) === String(idCard))
-        : filterCards.find((card) => String(card.id) === String(idCard));
-
-    return res;
+    if (searchName.length === 0 && filterCards.length === 0) {
+      const res = cards.find((card) => String(card.id) === String(idCard));
+      return res;
+    } else if (searchName.length === 0) {
+      const res = filterCards.find(
+        (card) => String(card.id) === String(idCard)
+      );
+      return res;
+    } else {
+      const res = searchName.find((card) => String(card.id) === String(idCard));
+      return res;
+    }
   }
   function showInfos() {
     setInfos(!infos);
@@ -43,7 +50,7 @@ export function CardPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const res = filterCard();
-  console.log(res);
+
   return loading ? (
     <></>
   ) : (
