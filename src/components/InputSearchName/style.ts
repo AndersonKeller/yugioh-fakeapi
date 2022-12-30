@@ -23,7 +23,7 @@ export const StyledInputSearchName = styled.form`
   button {
     position: absolute;
     right: 5px;
-    top: 20%;
+    top: 16%;
     background-color: var(--color-white);
     color: var(--color-black);
   }

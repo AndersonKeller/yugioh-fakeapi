@@ -36,8 +36,8 @@ export function Register() {
   function onSubmitApi(data: iFormData) {
     async function registerApi() {
       try {
-        const res = await apiAuth.post("/register", data);
-        console.log(res);
+        await apiAuth.post("/register", data);
+
         navigate("/login");
       } catch (error) {
         console.error(error);

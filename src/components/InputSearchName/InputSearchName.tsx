@@ -14,9 +14,7 @@ export function InputSearchName({
   children,
   errorMsg,
 }: iInputSearchProps) {
-  const { searchName, resultSearch, nothing } = useContext(CardContext);
-  console.log(searchName);
-  console.log(resultSearch);
+  const { resultSearch, nothing } = useContext(CardContext);
 
   return (
     <>

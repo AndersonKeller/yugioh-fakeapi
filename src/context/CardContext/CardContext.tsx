@@ -88,7 +88,7 @@ export function CardProvider({ children }: iCardContextProps) {
         const res = await apiConsume.get("", {
           params: { offset: offset, num: 28, fname: fname },
         });
-        console.log(res.data.meta);
+
         setRemaing(res.data.meta.pages_remaining);
         setFilterCards([]);
         setSearchName(res.data.data);
