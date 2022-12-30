@@ -4,7 +4,7 @@ export const StyledInputSearchName = styled.form`
   border: none;
   height: 50px;
   position: relative;
-  width: 250px;
+  width: 280px;
   input {
     border-radius: 1rem;
     background-color: transparent;

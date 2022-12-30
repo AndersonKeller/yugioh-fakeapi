@@ -7,7 +7,7 @@ export const StyledList = styled.ul`
   gap: 1.5rem;
   padding: 1.5rem 2rem;
   width: 100vw;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 450px;
   animation: listAnimation 0.5s ease;
@@ -36,4 +36,17 @@ export const StyledList = styled.ul`
       opacity: 1;
     }
   }
+  @media (min-width: 1200px) {
+    & {
+      flex-wrap: wrap;
+      animation: listAnimation 1s ease;
+    }
+  }
+`;
+export const StyledDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 100%;
+  margin: 0 auto;
 `;

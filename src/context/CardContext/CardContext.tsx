@@ -52,7 +52,7 @@ export function CardProvider({ children }: iCardContextProps) {
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
   const [fname, setFname] = useState("");
-  const [num, setNum] = useState(30);
+  const [num, setNum] = useState(28);
   const [typeFilter, setTypeFilter] = useState("");
 
   function filterHandle() {
@@ -76,12 +76,11 @@ export function CardProvider({ children }: iCardContextProps) {
 
   function searchByName() {
     async function searchNameApi() {
-      console.log(searchName);
       try {
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 30, fname: fname },
+          params: { offset: offset, num: 28, fname: fname },
         });
-        console.log(res.data);
+
         setRemaing(res.data.meta.pages_remaining);
 
         setSearchName(res.data.data);

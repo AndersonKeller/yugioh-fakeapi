@@ -19,8 +19,14 @@ export const StyledForm = styled.form`
     border-radius: 50%;
     border: none;
   }
+  span {
+    color: var(--color-error);
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
 `;
 export const StyledInput = styled.input`
   height: 50px;
   border-radius: 1rem;
+  padding-left: 1rem;
 `;
