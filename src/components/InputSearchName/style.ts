@@ -9,8 +9,11 @@ export const StyledInputSearchName = styled.form`
     border-radius: 1rem;
     background-color: transparent;
     border: 1px solid var(--color-white);
-
+    color: var(--color-white);
     width: 100%;
+    &::placeholder {
+      color: var(--color-white);
+    }
   }
   button {
     position: absolute;
