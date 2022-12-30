@@ -5,6 +5,8 @@ import { CardContext } from "../../context/CardContext/CardContext";
 import { StyledModalWrapper } from "../../pages/CardPage/style";
 
 import { StyledButton } from "../Button/style";
+import { Input } from "../Input/Input";
+import { InputSearchName } from "../InputSearchName/InputSearchName";
 
 import { StyledHeader } from "./style";
 
@@ -34,6 +36,10 @@ export function Header() {
           Registrar
         </StyledButton>
       </div>
+      <InputSearchName>
+        <Input placeholder="Pesquise pelo nome..." register={""} />
+        <StyledButton>Pesquisar</StyledButton>
+      </InputSearchName>
       {showFilter && (
         <StyledModalWrapper>
           <StyledButton onClick={() => defineFilter("")}>

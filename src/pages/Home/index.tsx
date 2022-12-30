@@ -21,7 +21,7 @@ export function Home() {
       try {
         setLoading(true);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 10 },
+          params: { offset: offset, num: 30 },
         });
 
         setRemaing(res.data.meta.pages_remaining);

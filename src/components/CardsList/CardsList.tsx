@@ -9,10 +9,10 @@ export function CardsList() {
     useContext(CardContext);
 
   function backList() {
-    offset > 0 && setOffset(offset - 10);
+    offset > 0 && setOffset(offset - 30);
   }
   function nextList() {
-    remaing > 0 && setOffset(offset + 10);
+    remaing > 0 && setOffset(offset + 30);
   }
 
   return (

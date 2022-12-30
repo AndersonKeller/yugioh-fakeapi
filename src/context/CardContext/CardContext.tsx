@@ -55,7 +55,7 @@ export function CardProvider({ children }: iCardContextProps) {
       try {
         //setLoading(true);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 10, type: `${typeFilter}` },
+          params: { offset: offset, num: 30, type: `${typeFilter}` },
         });
         setRemaing(res.data.meta.pages_remaining);
         setFilterCards(res.data.data);
