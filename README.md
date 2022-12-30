@@ -1,5 +1,7 @@
 Projeto Yu-gi-oh Fake Api!
 
+preview Vercel (https://yugioh-fake-api.vercel.app/)
+
 [Em andadmento]
 
 Projeto realizado durante as férias do meu curso afim de praticar e consolidar alguns conceitos de React.js e typescript.
