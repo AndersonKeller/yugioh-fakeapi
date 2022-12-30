@@ -1,3 +1,13 @@
+Projeto Yu-gi-oh Fake Api!
+
+[Em andadmento]
+
+Projeto realizado durante as férias do meu curso afim de praticar e consolidar alguns conceitos de React.js e typescript.
+
+o projeto consiste em consumir uma api com as cartas de Yu-gi-oh (https://db.ygoprodeck.com/api/v7/cardinfo.php) e lista-las, e também uma fakeApi (https://json-web-server-m3kenzie-andersonkeller.onrender.com) criada para fazer register e login , e com isso editar e montar decks.
+
+em andamento...
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
