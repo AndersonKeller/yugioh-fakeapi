@@ -11,7 +11,7 @@ export const StyledHeader = styled.header`
   position: relative;
   text-align: center;
   width: 100vw;
-  max-width: 1100px;
+  max-width: 1200px;
 
   div button {
     font-size: 0.75rem;

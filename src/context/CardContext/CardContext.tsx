@@ -52,7 +52,7 @@ export function CardProvider({ children }: iCardContextProps) {
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
   const [fname, setFname] = useState("");
-  const [num, setNum] = useState(28);
+
   const [typeFilter, setTypeFilter] = useState("");
 
   function filterHandle() {
@@ -60,7 +60,7 @@ export function CardProvider({ children }: iCardContextProps) {
       try {
         //setLoading(true);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: num, type: `${typeFilter}` },
+          params: { offset: offset, num: 28, type: `${typeFilter}` },
         });
         setRemaing(res.data.meta.pages_remaining);
         setFilterCards(res.data.data);
