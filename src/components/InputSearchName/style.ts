@@ -15,6 +15,11 @@ export const StyledInputSearchName = styled.form`
       color: var(--color-white);
     }
   }
+  span {
+    color: var(--color-error);
+    font-weight: 500;
+    font-size: 1rem;
+  }
   button {
     position: absolute;
     right: 5px;
@@ -22,4 +27,8 @@ export const StyledInputSearchName = styled.form`
     background-color: var(--color-white);
     color: var(--color-black);
   }
+`;
+export const StyledP = styled.p`
+  color: var(--color-white2);
+  margin-top: 1.5rem;
 `;

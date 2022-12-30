@@ -34,7 +34,6 @@ export function Header() {
   const navigate = useNavigate();
 
   function onSubmitFname(data: iFormData) {
-    console.log(data);
     setFname(data.fname);
   }
 
@@ -58,7 +57,10 @@ export function Header() {
           Registrar
         </StyledButton>
       </div>
-      <InputSearchName onSubmit={handleSubmit(onSubmit)}>
+      <InputSearchName
+        onSubmit={handleSubmit(onSubmit)}
+        errorMsg={errors.fname?.message && errors.fname.message}
+      >
         <Input
           placeholder="Pesquise pelo nome..."
           register={register("fname")}

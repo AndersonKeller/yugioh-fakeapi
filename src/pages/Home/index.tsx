@@ -54,7 +54,7 @@ export function Home() {
   }, [typeFilter]);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    searchByName();
+    fname !== "" && searchByName();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fname]);
   useEffect(() => {

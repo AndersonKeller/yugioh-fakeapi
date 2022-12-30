@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 import { apiConsume } from "../../service/api";
 
 interface iCardContextProps {
@@ -23,6 +23,10 @@ interface iCardContext {
   fname: string;
   setFname: React.Dispatch<React.SetStateAction<string>>;
   searchByName: () => void;
+  resultSearch: number;
+  setResultSearch: React.Dispatch<React.SetStateAction<number>>;
+  nothing: boolean;
+  setNothing: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface iCard {
   name: string;
@@ -52,6 +56,8 @@ export function CardProvider({ children }: iCardContextProps) {
   const [offset, setOffset] = useState(0);
   const [remaing, setRemaing] = useState(0);
   const [fname, setFname] = useState("");
+  const [resultSearch, setResultSearch] = useState(0);
+  const [nothing, setNothing] = useState(false);
 
   const [typeFilter, setTypeFilter] = useState("");
 
@@ -63,6 +69,7 @@ export function CardProvider({ children }: iCardContextProps) {
           params: { offset: offset, num: 28, type: `${typeFilter}` },
         });
         setRemaing(res.data.meta.pages_remaining);
+        setSearchName([]);
         setFilterCards(res.data.data);
       } catch (error) {
         console.error(error);
@@ -77,16 +84,21 @@ export function CardProvider({ children }: iCardContextProps) {
   function searchByName() {
     async function searchNameApi() {
       try {
+        setNothing(false);
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 28, fname: fname },
+          params: { offset: 0, num: 28, fname: fname },
         });
-
+        console.log(res.data.meta);
         setRemaing(res.data.meta.pages_remaining);
-
+        setFilterCards([]);
         setSearchName(res.data.data);
+        setResultSearch(res.data.meta.total_rows);
       } catch (error) {
         console.error(error);
         setSearchName([]);
+        setResultSearch(0);
+        setNothing(true);
+      } finally {
       }
     }
     searchNameApi();
@@ -112,6 +124,10 @@ export function CardProvider({ children }: iCardContextProps) {
         fname,
         setFname,
         searchByName,
+        resultSearch,
+        setResultSearch,
+        nothing,
+        setNothing,
       }}
     >
       {children}
