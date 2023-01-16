@@ -14,7 +14,7 @@ import { InputSearchName } from "../InputSearchName/InputSearchName";
 import { StyledHeader } from "./style";
 
 export function Header() {
-  const { setTypeFilter, setFname } = useContext(CardContext);
+  const { setTypeFilter, setFname, setOffset } = useContext(CardContext);
   const [showFilter, setShowFilter] = useState(false);
 
   const searchNameSchema = yup.object().shape({
@@ -35,9 +35,12 @@ export function Header() {
 
   function onSubmitFname(data: iFormData) {
     setFname(data.fname);
+    setOffset(0);
   }
 
   function defineFilter(text: string) {
+    setOffset(0);
+
     setTypeFilter(text);
     text === "" && filters();
   }

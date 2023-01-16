@@ -65,6 +65,7 @@ export function CardProvider({ children }: iCardContextProps) {
     async function getApiFilter() {
       try {
         //setLoading(true);
+
         const res = await apiConsume.get("", {
           params: { offset: offset, num: 28, type: `${typeFilter}` },
         });
@@ -85,6 +86,7 @@ export function CardProvider({ children }: iCardContextProps) {
     async function searchNameApi() {
       try {
         setNothing(false);
+
         const res = await apiConsume.get("", {
           params: { offset: offset, num: 28, fname: fname },
         });
