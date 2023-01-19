@@ -3,7 +3,8 @@ import { CardsList } from "../../components/CardsList/CardsList";
 
 import { Header } from "../../components/Header/Header";
 import { CardContext } from "../../context/CardContext/CardContext";
-import { apiConsume } from "../../service/api";
+import { UserContext } from "../../context/UserContext/UserContext";
+import { apiAuth, apiConsume } from "../../service/api";
 
 export function Home() {
   const {
@@ -17,7 +18,29 @@ export function Home() {
     fname,
     searchByName,
   } = useContext(CardContext);
+  const { setUser } = useContext(UserContext);
+
   const [loading, setLoading] = useState(true);
+
+  function verifyUser() {
+    const token = window.localStorage.getItem("@tokenYuGiOh-fakeApi");
+    const id = window.localStorage.getItem("@idYuGiOh");
+    async function apiVerify() {
+      try {
+        const res = await apiAuth.get(`/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUser(res.data);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    apiVerify();
+  }
 
   function getAllCards() {
     async function getApi() {
@@ -49,7 +72,7 @@ export function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
   useEffect(() => {
-    filterHandle();
+    typeFilter !== "" && filterHandle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeFilter]);
   useEffect(() => {
@@ -59,6 +82,7 @@ export function Home() {
   }, [fname]);
   useEffect(() => {
     getAllCards();
+    verifyUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
