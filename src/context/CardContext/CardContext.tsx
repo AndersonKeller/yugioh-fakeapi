@@ -27,6 +27,8 @@ interface iCardContext {
   setResultSearch: React.Dispatch<React.SetStateAction<number>>;
   nothing: boolean;
   setNothing: React.Dispatch<React.SetStateAction<boolean>>;
+  raceFilter: string;
+  setRaceFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 interface iCard {
   name: string;
@@ -58,7 +60,7 @@ export function CardProvider({ children }: iCardContextProps) {
   const [fname, setFname] = useState("");
   const [resultSearch, setResultSearch] = useState(0);
   const [nothing, setNothing] = useState(false);
-
+  const [raceFilter, setRaceFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
 
   function filterHandle() {
@@ -67,7 +69,11 @@ export function CardProvider({ children }: iCardContextProps) {
         //setLoading(true);
 
         const res = await apiConsume.get("", {
-          params: { offset: offset, num: 28, type: `${typeFilter}` },
+          params: {
+            offset: offset,
+            num: 28,
+            type: `${typeFilter}`,
+          },
         });
         setRemaing(res.data.meta.pages_remaining);
         setSearchName([]);
@@ -79,7 +85,29 @@ export function CardProvider({ children }: iCardContextProps) {
         //setLoading(false);
       }
     }
-    getApiFilter();
+    async function getApiRace() {
+      try {
+        //setLoading(true);
+
+        const res = await apiConsume.get("", {
+          params: {
+            offset: offset,
+            num: 28,
+            type: `${typeFilter}`,
+            race: `${raceFilter}`,
+          },
+        });
+        setRemaing(res.data.meta.pages_remaining);
+        setSearchName([]);
+        setFilterCards(res.data.data);
+      } catch (error) {
+        console.error(error);
+        setFilterCards([]);
+      } finally {
+        //setLoading(false);
+      }
+    }
+    raceFilter === "" ? getApiFilter() : getApiRace();
   }
 
   function searchByName() {
@@ -130,6 +158,8 @@ export function CardProvider({ children }: iCardContextProps) {
         setResultSearch,
         nothing,
         setNothing,
+        raceFilter,
+        setRaceFilter,
       }}
     >
       {children}

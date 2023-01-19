@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CardsList } from "../../components/CardsList/CardsList";
 
 import { Header } from "../../components/Header/Header";
+import { OrderList } from "../../components/OrderList/OrderList";
 import { CardContext } from "../../context/CardContext/CardContext";
 import { UserContext } from "../../context/UserContext/UserContext";
 import { apiAuth, apiConsume } from "../../service/api";
@@ -17,6 +18,7 @@ export function Home() {
     searchName,
     fname,
     searchByName,
+    raceFilter,
   } = useContext(CardContext);
   const { setUser } = useContext(UserContext);
 
@@ -74,7 +76,7 @@ export function Home() {
   useEffect(() => {
     typeFilter !== "" && filterHandle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeFilter]);
+  }, [typeFilter, raceFilter]);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     fname !== "" && searchByName();
@@ -93,6 +95,7 @@ export function Home() {
   ) : (
     <>
       <Header />
+      <OrderList />
       <CardsList />
     </>
   );
