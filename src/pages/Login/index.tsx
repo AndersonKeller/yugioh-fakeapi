@@ -51,7 +51,7 @@ export function Login() {
     }
     loginApi();
   }
-  function closeModal() {
+  function closeModal(): void {
     setShowLogin(!showLogin);
     navigate("/home");
   }
