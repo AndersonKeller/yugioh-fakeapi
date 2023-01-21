@@ -12,9 +12,12 @@ import { Input } from "../Input/Input";
 import { InputSearchName } from "../InputSearchName/InputSearchName";
 
 import { StyledHeader } from "./style";
+import { UserContext } from "../../context/UserContext/UserContext";
 
 export function Header() {
-  const { setTypeFilter, setFname } = useContext(CardContext);
+  const { setTypeFilter, setFname, setOffset, setRaceFilter, setFilterCards } =
+    useContext(CardContext);
+  const { user } = useContext(UserContext);
   const [showFilter, setShowFilter] = useState(false);
 
   const searchNameSchema = yup.object().shape({
@@ -35,10 +38,14 @@ export function Header() {
 
   function onSubmitFname(data: iFormData) {
     setFname(data.fname);
+    setOffset(0);
   }
 
   function defineFilter(text: string) {
+    setOffset(0);
+    setRaceFilter("");
     setTypeFilter(text);
+    setFilterCards([]);
     text === "" && filters();
   }
 
@@ -67,6 +74,7 @@ export function Header() {
         />
         <StyledButton type="submit">Pesquisar</StyledButton>
       </InputSearchName>
+      {user.email && <h2>Olá {user.name}</h2>}
       {showFilter && (
         <StyledModalWrapper>
           <StyledButton onClick={() => defineFilter("")}>
@@ -86,6 +94,9 @@ export function Header() {
           </StyledButton>
           <StyledButton onClick={() => defineFilter("Spirit Monster")}>
             Spirit Monster
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Effect Monster")}>
+            Effect Monster
           </StyledButton>
           <StyledButton onClick={filters}>OK</StyledButton>
         </StyledModalWrapper>

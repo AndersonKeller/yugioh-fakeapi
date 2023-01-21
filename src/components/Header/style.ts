@@ -14,10 +14,15 @@ export const StyledHeader = styled.header`
   max-width: 1200px;
   gap: 1rem;
 
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
   div button {
     font-size: 0.75rem;
-
-    padding: 0.5rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
     color: var(--color-black);
     background-color: var(--color-white);
   }
@@ -30,5 +35,11 @@ export const StyledHeader = styled.header`
     color: var(--text-color);
     font-size: 3rem;
     font-weight: 700;
+  }
+  @media (min-width: 700px) {
+    div {
+      gap: 32px;
+      justify-content: center;
+    }
   }
 `;
