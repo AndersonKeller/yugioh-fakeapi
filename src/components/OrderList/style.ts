@@ -11,4 +11,7 @@ export const StyledOrderList = styled.section`
   h3 {
     width: 100%;
   }
+  button {
+    padding: 0 0.5rem;
+  }
 `;

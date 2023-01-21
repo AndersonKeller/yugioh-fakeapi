@@ -15,7 +15,8 @@ import { StyledHeader } from "./style";
 import { UserContext } from "../../context/UserContext/UserContext";
 
 export function Header() {
-  const { setTypeFilter, setFname, setOffset } = useContext(CardContext);
+  const { setTypeFilter, setFname, setOffset, setRaceFilter, setFilterCards } =
+    useContext(CardContext);
   const { user } = useContext(UserContext);
   const [showFilter, setShowFilter] = useState(false);
 
@@ -42,8 +43,9 @@ export function Header() {
 
   function defineFilter(text: string) {
     setOffset(0);
-
+    setRaceFilter("");
     setTypeFilter(text);
+    setFilterCards([]);
     text === "" && filters();
   }
 
@@ -92,6 +94,9 @@ export function Header() {
           </StyledButton>
           <StyledButton onClick={() => defineFilter("Spirit Monster")}>
             Spirit Monster
+          </StyledButton>
+          <StyledButton onClick={() => defineFilter("Effect Monster")}>
+            Effect Monster
           </StyledButton>
           <StyledButton onClick={filters}>OK</StyledButton>
         </StyledModalWrapper>
