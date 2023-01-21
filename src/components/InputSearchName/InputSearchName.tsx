@@ -1,6 +1,8 @@
 import { ReactNode, useContext } from "react";
 import { CardContext } from "../../context/CardContext/CardContext";
 
+import { StyledButton } from "../Button/style";
+
 import { StyledInputSearchName, StyledP } from "./style";
 
 interface iInputSearchProps {
@@ -14,8 +16,13 @@ export function InputSearchName({
   children,
   errorMsg,
 }: iInputSearchProps) {
-  const { resultSearch, nothing } = useContext(CardContext);
-
+  const { resultSearch, nothing, setSearchName, setResultSearch, setFname } =
+    useContext(CardContext);
+  function handleCleanSearch() {
+    setSearchName([]);
+    setResultSearch(0);
+    setFname("");
+  }
   return (
     <>
       <StyledInputSearchName noValidate onSubmit={onSubmit}>
@@ -23,7 +30,10 @@ export function InputSearchName({
         {errorMsg && <span>{errorMsg}</span>}
       </StyledInputSearchName>
       {resultSearch > 0 && (
-        <StyledP>Resultado da busca: {resultSearch} cartas</StyledP>
+        <>
+          <StyledP>Resultado da busca: {resultSearch} cartas</StyledP>
+          <StyledButton onClick={handleCleanSearch}> Limpar </StyledButton>
+        </>
       )}
       {nothing && <StyledP>Nada encontrado</StyledP>}
     </>

@@ -11,7 +11,7 @@ import { StyledButton } from "../../components/Button/style";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { showLogin, setShowLogin } = useContext(UserContext);
+  const { showLogin, setShowLogin, setUser } = useContext(UserContext);
   type iFormData = {
     email: string;
     password: string;
@@ -36,11 +36,13 @@ export function Login() {
       console.log(data);
       try {
         const res = await apiAuth.post("/login", data);
-        console.log(res);
+        console.log(res.data);
         window.localStorage.setItem(
           "@tokenYuGiOh-fakeApi",
           res.data.accessToken
         );
+        window.localStorage.setItem("@idYuGiOh", res.data.user.id);
+        setUser(res.data.user);
       } catch (error) {
         console.error(error);
       } finally {
@@ -49,7 +51,7 @@ export function Login() {
     }
     loginApi();
   }
-  function closeModal() {
+  function closeModal(): void {
     setShowLogin(!showLogin);
     navigate("/home");
   }
