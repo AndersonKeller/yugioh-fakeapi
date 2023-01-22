@@ -33,8 +33,14 @@ export const GlobalStyles = createGlobalStyle`
         display: flex;
         align-items: center;
         box-sizing: border-box;
+       
         
     }
+    #root{
+        height: 100vh;
+       
+    }
+   
     button{
         cursor: pointer;
     }

@@ -9,9 +9,11 @@ import { apiAuth } from "../../service/api";
 import { Input } from "../../components/Input/Input";
 import { StyledButton } from "../../components/Button/style";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../../context/MainProvider/MainProvier";
 
 export function Login() {
   const { showLogin, setShowLogin, setUser } = useContext(UserContext);
+
   type iFormData = {
     email: string;
     password: string;
@@ -43,10 +45,13 @@ export function Login() {
         );
         window.localStorage.setItem("@idYuGiOh", res.data.user.id);
         setUser(res.data.user);
+        notify({ message: "Login efetuado com sucesso", type: "sucess" });
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
       } catch (error) {
         console.error(error);
-      } finally {
-        navigate("/home");
+        notify({ message: "Algo deu errado", type: "error" });
       }
     }
     loginApi();
