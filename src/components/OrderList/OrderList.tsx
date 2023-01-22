@@ -92,7 +92,7 @@ export function OrderList() {
 
   return (
     <StyledOrderList>
-      <h3>Ordenar por raça: </h3>
+      {typeFilter !== "" && <h3>Ordenar por raça: </h3>}
       {typeFilter === "Spell Card" &&
         spellCardRaces.map((race) => {
           console.log(race);

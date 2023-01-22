@@ -3,7 +3,7 @@ import { iAsideProps } from ".";
 
 export const StyledModalWrapper = styled.div`
   position: fixed;
-  height: 100vh;
+
   top: 0;
   left: 0;
   min-height: 100%;
@@ -14,6 +14,7 @@ export const StyledModalWrapper = styled.div`
   justify-content: center;
   transition: 1s ease;
   flex-direction: column;
+
   gap: 1rem;
 `;
 export const StyledModal = styled.div`
