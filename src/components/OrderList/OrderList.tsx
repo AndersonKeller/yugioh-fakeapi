@@ -95,7 +95,7 @@ export function OrderList() {
       {typeFilter !== "" && <h3>Ordenar por raça: </h3>}
       {typeFilter === "Spell Card" &&
         spellCardRaces.map((race) => {
-          console.log(race);
+         
           return (
             <StyledButton key={race} onClick={() => defineRace(race)}>
               {race}

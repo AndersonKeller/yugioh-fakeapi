@@ -14,7 +14,7 @@ import { InputSearchName } from "../InputSearchName/InputSearchName";
 import { StyledHeader } from "./style";
 import { UserContext } from "../../context/UserContext/UserContext";
 
-export function Header() {
+export function Header({ children }: any) {
   const { setTypeFilter, setFname, setOffset, setRaceFilter, setFilterCards } =
     useContext(CardContext);
   const { user } = useContext(UserContext);
@@ -56,6 +56,7 @@ export function Header() {
   return (
     <StyledHeader>
       <h1>YU-GI-OH</h1>
+
       <div>
         <StyledButton onClick={filters}>Filtros</StyledButton>
         <StyledButton onClick={() => navigate("/login")}>Login</StyledButton>
@@ -64,6 +65,7 @@ export function Header() {
           Registrar
         </StyledButton>
       </div>
+      {children}
       <InputSearchName
         onSubmit={handleSubmit(onSubmit)}
         errorMsg={errors.fname?.message && errors.fname.message}

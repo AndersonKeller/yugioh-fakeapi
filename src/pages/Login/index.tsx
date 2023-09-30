@@ -1,15 +1,15 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginForm } from "../../components/LoginForm/LoginForm";
-import { UserContext } from "../../context/UserContext/UserContext";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { StyledModalWrapper } from "../CardPage/style";
-import { apiAuth } from "../../service/api";
-import { Input } from "../../components/Input/Input";
-import { StyledButton } from "../../components/Button/style";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { StyledButton } from "../../components/Button/style";
+import { Input } from "../../components/Input/Input";
+import { LoginForm } from "../../components/LoginForm/LoginForm";
 import { notify } from "../../context/MainProvider/MainProvier";
+import { UserContext } from "../../context/UserContext/UserContext";
+import { apiAuth } from "../../service/api";
+import { StyledModalWrapper } from "../CardPage/style";
 
 export function Login() {
   const { showLogin, setShowLogin, setUser } = useContext(UserContext);
@@ -35,10 +35,9 @@ export function Login() {
     onSubmitApi(data);
   function onSubmitApi(data: iFormData) {
     async function loginApi() {
-      console.log(data);
       try {
         const res = await apiAuth.post("/login", data);
-        console.log(res.data);
+
         window.localStorage.setItem(
           "@tokenYuGiOh-fakeApi",
           res.data.accessToken
